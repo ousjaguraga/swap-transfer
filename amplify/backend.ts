@@ -13,7 +13,7 @@ const backend = defineBackend({
 
 // Re-apply the Gen 1 password policy (min 8, upper + lower + number + symbol)
 // via the underlying Cognito user pool L1 construct.
-const { cfnUserPool } = backend.auth.resources.cfnResources;
+const { cfnUserPool, cfnUserPoolClient } = backend.auth.resources.cfnResources;
 cfnUserPool.policies = {
   passwordPolicy: {
     minimumLength: 8,
@@ -23,3 +23,12 @@ cfnUserPool.policies = {
     requireSymbols: true,
   },
 };
+
+// The app signs in with USER_PASSWORD_AUTH (as the Gen 1 app did), which Gen 2
+// does not enable by default. Enable it on the user pool client (keeping SRP
+// and refresh-token flows available).
+cfnUserPoolClient.explicitAuthFlows = [
+  'ALLOW_USER_SRP_AUTH',
+  'ALLOW_USER_PASSWORD_AUTH',
+  'ALLOW_REFRESH_TOKEN_AUTH',
+];
