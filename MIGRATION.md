@@ -39,8 +39,9 @@ This project was cloned from `mango-transfer` (Amplify **Gen 1**, CLI-driven bac
   `signIn` options.
 - `sanitizeInput` (farm.js) strips `createdAt` / `updatedAt` — read-only system
   fields in Gen 2 that must not appear in create/update inputs.
-- Removed dead Gen 1 DataStore artifacts (`src/models/`) and the old
-  `src/amplifyconfiguration.json`.
+- Replaced the Gen 1 DataStore-generated `src/models/` (which pulled in
+  `@aws-amplify/datastore`) with a lightweight plain-enum module — `farm.js`
+  imports `TransferStatus` from it. Removed the old `src/amplifyconfiguration.json`.
 - `package.json`: `aws-amplify` → v6, added Gen 2 toolchain (`@aws-amplify/backend`,
   `@aws-amplify/backend-cli`, `aws-cdk-lib`, `constructs`, `tsx`, `typescript`,
   `esbuild`), added `react-native-url-polyfill`, removed v5-only
