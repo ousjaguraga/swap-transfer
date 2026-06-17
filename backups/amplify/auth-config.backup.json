@@ -1,0 +1,13 @@
+{
+  "userPoolId": "eu-west-2_yqMM7gkZ9",
+  "userPoolName": "nikof4fbcf84_userpool_f4fbcf84-dev",
+  "webClientId": "6d2iopb4sgtagn1be8bs5c2fka",
+  "nativeClientId": "6d2iopb4sgtagn1be8bs5c2fka",
+  "identityPoolId": "eu-west-2:ada14f2f-1789-4d19-a827-af4db64e65db",
+  "identityPoolName": "nikof4fbcf84_identitypool_f4fbcf84__dev",
+  "allowUnauthenticatedIdentities": false,
+  "authRoleArn": "arn:aws:iam::044956999593:role/eu-west-2_c22zZ6xhD_Full-access",
+  "unauthRoleArn": "arn:aws:iam::044956999593:role/amplify-niko-dev-203214-unauthRole",
+  "region": "eu-west-2",
+  "notes": "Imported auth configuration used before recreating the Amplify backend."
+}

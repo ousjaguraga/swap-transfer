@@ -1,0 +1,11 @@
+44:  const reportOwnerLabel = route.params?.owner || route.params?.ownerName || route.params?.creator || customer?.name || customer?.email || 'Unknown';
+107:    <p><strong>Owner:</strong> ${reportOwnerLabel}</p>
+212:  const buildReportCsv = () => {
+234:        reportOwnerLabel,
+275:      const csvContent = buildReportCsv();
+322:        <Text style={styles.summaryLabel}>Transfers in report</Text>
+324:        <Text style={styles.summaryLabel}>Owner</Text>
+325:        <Text style={styles.summaryValue}>{reportOwnerLabel}</Text>
+326:        <Text style={styles.summaryLabel}>Outstanding balance</Text>
+328:        <Text style={styles.summaryLabel}>Total GMD</Text>
+404:  summaryLabel: {

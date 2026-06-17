@@ -1,0 +1,40 @@
+type TransferReport @model @auth(rules: [{allow: groups, groups: ["Admin"], operations: [read, create, update, delete]}, {allow: groups, groups: ["Gagent"], operations: [read, create]}, {allow: groups, groups: ["Agent"], operations: [read]}]) {
+  id: ID!
+  Transfers: [Transfer] @hasMany(indexName: "byTransferReport", fields: ["id"])
+  creator: String
+}
+
+enum TransferStatus {
+  SENT
+  PENDING
+  PAID
+  CANCELLED
+}
+
+type Transfer @model @auth(rules: [{allow: groups, groups: ["Admin"], operations: [read, create, update, delete]}, {allow: groups, groups: ["Agent"], operations: [read, create]}, {allow: groups, groups: ["Gagent"], operations: [read, update]}]) {
+  id: ID!
+  from: String!
+  to: String!
+  amount: Int!
+  paid_on: AWSDate
+  settled_on: AWSDate
+  status: TransferStatus
+  transferreportID: ID @index(name: "byTransferReport")
+  settled: Boolean
+}
+
+type Receiver @model @auth(rules: [{allow: groups, groups: ["Admin"], operations: [read, create, update, delete]}, {allow: groups, groups: ["Agent"], operations: [read, create, update, delete]}, {allow: groups, groups: ["Gagent"], operations: [read]}]) {
+  id: ID!
+  name: String!
+  surname: String
+  number: String
+  senderID: ID! @index(name: "bySender")
+}
+
+type Sender @model @auth(rules: [{allow: groups, groups: ["Admin"], operations: [read, create, update, delete]}, {allow: groups, groups: ["Agent"], operations: [read, create, update, delete]}, {allow: groups, groups: ["Gagent"], operations: [read]}]) {
+  id: ID!
+  name: String
+  surname: String
+  number: String
+  Receivers: [Receiver] @hasMany(indexName: "bySender", fields: ["id"])
+}
